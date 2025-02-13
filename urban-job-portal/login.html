@@ -83,6 +83,10 @@
                 users = [];
             }
 
+            if(email=="tirth@gmail.com" && password=="tirth1234")
+            {
+                window.location.href = 'admin.html';
+            }
             // Find user with matching email and password
             const user = users.find(user => user.email === email && user.password === password);
             if (user) {
@@ -91,12 +95,10 @@
                 errorElement.style.display = 'none';
 
                 // Redirect based on user role
-                if (user.role === 'admin') {
-                    window.location.href = 'admin.html';
-                } else if (user.role === 'service_provider') {
+                 if (user.role === 'service_provider') {
                     window.location.href = 'provider.html';
                 } else {
-                    window.location.href = 'user_dashboard.html';
+                    window.location.href = 'user.html';
                 }
             } else {
                 // Display error message
@@ -106,3 +108,7 @@
     </script>
 </body>
 </html>
+
+<!-- if (user.role === 'admin') {
+    window.location.href = 'admin.html';
+} else -->
