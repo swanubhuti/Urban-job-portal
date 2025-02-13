@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f8f8f8;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color: #fff;
+                padding: 20px;
+                padding-right: 40px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #333;
+            }
+            input[type="email"], input[type="password"], select, button {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button {
+                background-color: #28a745;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #218838;
+            }
+            .error {
+                color: red;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Sign Up</h1>
+            <form id="signupForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <select id="role">
+                    <option value="customer">Customer</option>
+                    <option value="service_provider">Service Provider</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit">Sign Up</button>
+                <p>Already have an account? <a href="login.html">Log in</a></p>
+                <p class="error" id="signupError">Invalid input</p>
+            </form>
+        </div>
+        <script>
+            document.getElementById('signupForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+    
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const role = document.getElementById('role').value;
+                const errorElement = document.getElementById('signupError');
+    
+                // Simple validation rules
+                if (!validateEmail(email)) {
+                    displayError('Invalid email address');
+                    return;
+                }
+    
+                if (password.length < 6) {
+                    displayError('Password must be at least 6 characters');
+                    return;
+                }
+    
+                const newUser = {
+                    id: Date.now(),
+                    email: email,
+                    password: password,
+                    role: role // Save the role
+                };
+    
+                // Fetch existing users from localStorage
+                let users = localStorage.getItem('users');
+                if (users) {
+                    users = JSON.parse(users);
+                } else {
+                    users = [];
+                }
+    
+                // Check if email is already registered
+                const existingUser = users.find(user => user.email === email);
+                if (existingUser) {
+                    displayError('Email is already registered');
+                    return;
+                }
+    
+                // Add new user to the users array
+                users.push(newUser);
+    
+                // Save updated users array back to localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+    
+                alert('User added successfully');
+                errorElement.style.display = 'none';
+                // Redirect or perform additional actions after successful signup
+                window.location.href = 'login.html';
+            });
+    
+            function displayError(message) {
+                const errorElement = document.getElementById('signupError');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+    
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        </script>
+    </body>
+    </html>
+    
+    

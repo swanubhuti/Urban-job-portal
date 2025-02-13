@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Urban Company</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center; 
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .actions button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .actions button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        td button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Urban Company Logo">
+            <h1>Admin Dashboard - Urban Company</h1>
+        </div>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="container">
+        <div class="actions">
+            <button onclick="showServiceForm()">Add Service</button>
+            
+        </div>
+        
+        <div id="service-form" style="display: none;">
+            <h2>Add Service</h2>
+            <input type="text" id="serviceTitle" placeholder="Service Title">
+            <input type="text" id="serviceDescription" placeholder="Service Description">
+            <input type="number" id="servicePrice" placeholder="Service Price">
+            <input type="text" id="serviceCategory" placeholder="Service Category">
+            <button onclick="addService()">Submit</button>
+        </div>
+        
+        <div id="provider-form" style="display: none;">
+            <h2>Manage Providers</h2>
+            <input type="text" id="providerName" placeholder="Provider Name">
+            <input type="text" id="providerCategory" placeholder="Provider Category">
+            <button onclick="addProvider()">Submit</button>
+        </div>
+
+        <div id="services-container">
+            <h2>Available Services</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="services-table"></tbody>
+            </table>
+        </div>
+
+        <div id="providers-container" style="display: none;">
+            <h2>Service Providers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Provider Name</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="providers-table"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="admin.js">
+        
+    </script>
+</body>
+</html>

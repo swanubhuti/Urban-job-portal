@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Urban Company</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .search-box input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .services, .bookings {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .filters input, .filters select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filters button {
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .service-list, .booking-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-card, .booking-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+
+        .service-card img, .booking-card img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .service-card h3, .booking-card h3 {
+            margin-top: 10px;
+            color: #007bff;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .book-btn, .edit-btn, .cancel-btn {
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .book-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .edit-btn {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #pagination button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Urban Company Logo">
+            <h1>User Dashboard - Urban Company</h1>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchService" placeholder="Search Services..." onkeyup="searchService()">
+        </div>
+    </nav>
+
+    <section class="services">
+        <h2>Available Services</h2>
+
+        <div class="filters">
+            <label>Price Range:</label>
+            <input type="number" id="minPrice" placeholder="Min Price">
+            <input type="number" id="maxPrice" placeholder="Max Price">
+            <button onclick="filterByPrice()">Filter</button>
+
+            <label>Sort by Price:</label>
+            <select id="sortPrice" onchange="sortServices()">
+                <option value="default">Default</option>
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+            </select>
+        </div>
+
+        <div id="service-list" class="service-list"></div>
+        
+        <hr>
+        <div id="pagination">
+            <button onclick="prevPage()">Previous</button>
+            <span id="pageNumber">1</span>
+            <button onclick="nextPage()">Next</button>
+        </div>
+    </section>
+
+    <section class="bookings">
+        <h2>My Bookings</h2>
+        <div id="booking-list" class="booking-list"></div>
+    </section>
+
+    <script src = "user.js">
+        
+    </script>
+</body>
+</html>
